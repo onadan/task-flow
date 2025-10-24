@@ -45,25 +45,35 @@ export function EditTaskModal({
 }: EditTaskModalProps) {
   const { projects, columns, updateTask } = useTaskFlowStore();
 
-  const [formData, setFormData] = useState<FormData>(() => ({
-    title: task?.title ?? "",
-    description: task?.description ?? "",
-    projectId: task?.projectId ?? "",
-    columnId: task?.columnId ?? "",
-    priority: task?.priority ?? "medium",
-    dueDate: task?.dueDate ? task.dueDate.split("T")[0] : "",
-  }));
+  const [formData, setFormData] = useState<FormData>({
+    title: "",
+    description: "",
+    projectId: "",
+    columnId: "",
+    priority: "medium",
+    dueDate: "",
+  });
 
   // Update form data when task changes
   useEffect(() => {
     if (task) {
-      setFormData({
+      setFormData({ // eslint-disable-line
         title: task.title ?? "",
         description: task.description ?? "",
         projectId: task.projectId ?? "",
         columnId: task.columnId ?? "",
         priority: task.priority ?? "medium",
         dueDate: task.dueDate ? task.dueDate.split("T")[0] : "",
+      });
+    } else {
+      // Reset form when no task is selected
+      setFormData({ // eslint-disable-line
+        title: "",
+        description: "",
+        projectId: "",
+        columnId: "",
+        priority: "medium",
+        dueDate: "",
       });
     }
   }, [task]);
