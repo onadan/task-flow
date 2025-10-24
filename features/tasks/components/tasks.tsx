@@ -14,7 +14,7 @@ import { TasksKanbanView } from "./tasks-kanban-view";
 type ViewMode = "grid" | "list" | "kanban";
 
 export function Tasks() {
-  const { tasks, projects, columns, deleteTask, addTask } = useTaskFlowStore();
+  const { tasks, deleteTask, addTask } = useTaskFlowStore();
 
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [searchQuery, setSearchQuery] = useState("");
